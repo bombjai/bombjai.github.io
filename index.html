@@ -1,11 +1,35 @@
 <html>
+
 <head>
-	<title>hiihihi</title>
+    <title>
+        Welcome to Bombjai
+    </title>
+	<link rel="stylesheet" type="text/css" href="public/css/default.css">
+	<link rel="stylesheet" href="public/css/vendor/mdl/material.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-<body>
+
+<body np-app="myApp">
+    <h1>welcome to my page</h1>
+
+<div ng-controller="homepage">
+	{{ firstName }}
+
+</div>
+
+<!-- Accent-colored raised button with ripple -->
+<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+  Button
+</button>
 
 
-<h1>welcome to my page</h1>
-
+    	<script src="public/js/vendor/jquery/jquery-1.11.3.min.js"></script>
+	<script src="public/js/vendor/angular-1.4.8/angular.js"></script>
+	<script src="public/js/vendor/mdl/material.min.js"></script>
+	<script src="app/app.js"></script>
+	<script src="app/services/mainservice.js"></script>
+	<script src="app/directives/maindirective.js"></script>
+	<script src="app/controllers/maincontroller.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,30 @@
+//* FUNCTIONS
+//============================================= */
+
+$browser-context: 16; // Default
+$browser-contextPX: 16px;
+// Convert PX to EM
+// https://css-tricks.com/snippets/sass/px-to-em-functions/
+
+//Usage
+//h1 {font-size: em(32); } 
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em;
+}
+
+// Convert PX to REM
+// http://zerosixthree.se/8-sass-mixins-you-must-have-in-your-toolbox/
+
+// Usage
+// p {
+// @include font-size(14px)
+// }
+@function calculateRem($size) {
+  $remSize: $size / $browser-contextPX;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
