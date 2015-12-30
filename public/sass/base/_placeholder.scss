@@ -1,0 +1,35 @@
+//* PLACEHOLDER
+//============================================= */
+
+// Use @extend to reduce dry
+
+// We use this to do clear floats
+//@mixin clearfix {
+//  &:before, &:after { content: " "; display: table; }
+//  &:after { clear: both; }
+//}
+// Usage:
+// .container-with-floated-children {
+//  @extend %clearfix;
+// }
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {content: " "; display: table;}
+  &:after {clear: both;}
+}
+
+// Usage
+// add class on html ex: <div class="visually-hidden">hidden</div>
+// .visually-hidden {
+//   @extend %visuallyhidden;
+// }
+%visuallyhidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}

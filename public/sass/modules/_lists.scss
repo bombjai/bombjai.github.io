@@ -1,0 +1,14 @@
+//* LISTS
+//============================================= */
+@import "compass/css3";
+
+//testing the compass framework 
+.goodlist {
+	display: none;
+}
+input[type="text"] {
+  @include input-placeholder {
+    color: #bfbfbf;
+    font-style: italic;
+  }
+} 

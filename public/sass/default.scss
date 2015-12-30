@@ -1,0 +1,46 @@
+//* RESET 
+//========================================================================== */
+//@import 'framework/_reset.scss';
+@import "compass/reset";
+
+//* VENDOR - Default fall-backs and external files.
+//========================================================================== */
+
+//@import 'vendor/_normalize.scss';
+
+
+//* BASE - Base Variable file along with starting point Mixins and Placeholders.
+//========================================================================== */
+
+@import 'base/_variables.scss';
+@import 'base/_functions.scss';
+@import 'base/_mixins.scss';
+@import 'base/_placeholder.scss';
+
+//* FRAMEWORK - Structure and layout files.
+//========================================================================== */
+
+@import 'framework/_breakpoints.scss';
+@import 'framework/_grid.scss';
+@import 'framework/_layout.scss';
+
+
+//* MODULES - Re-usable site elements.
+//========================================================================== */ 
+
+@import 'modules/_buttons.scss';
+@import 'modules/_lists.scss';
+@import 'modules/_icons.scss';
+@import 'modules/_components.scss';
+
+
+//* GLOBAL
+//========================================================================== */
+
+
+//* CUSTOMS
+//========================================================================== */
+
+@import "shared/_homepage";
+
+
