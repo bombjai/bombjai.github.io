@@ -1,35 +1,41 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
 
 <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         Welcome to Bombjai
     </title>
-	<link rel="stylesheet" type="text/css" href="public/css/default.css">
-	<link rel="stylesheet" href="public/css/vendor/mdl/material.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="public/css/default.css">
+    <link rel="stylesheet" href="public/css/vendor/mdl/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
-<body np-app="myApp">
+<body>
     <h1>welcome to my page</h1>
+    <div ng-controller="homepageCtrl">
+        {{firstName}} 
+			<ng-view></ng-view>
 
-<div ng-controller="homepage">
-	{{ firstName }}
+        <a href="home1">Home 1</a>
+        <a href="home2">Home 2</a>
 
-</div>
-
-<!-- Accent-colored raised button with ripple -->
-<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-  Button
-</button>
-
-
-    	<script src="public/js/vendor/jquery/jquery-1.11.3.min.js"></script>
-	<script src="public/js/vendor/angular-1.4.8/angular.js"></script>
-	<script src="public/js/vendor/mdl/material.min.js"></script>
-	<script src="app/app.js"></script>
-	<script src="app/services/mainservice.js"></script>
-	<script src="app/directives/maindirective.js"></script>
-	<script src="app/controllers/maincontroller.js"></script>
+        <!-- Accent-colored raised button with ripple -->
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            Button
+        </button>
+        <script src="public/js/vendor/jQuery/jquery-1.11.3.min.js"></script>
+        <script src="public/js/vendor/angular-1.4.8/angular.js"></script>
+        <script src="public/js/vendor/angular-1.4.8/angular-route.js"></script>
+        <script src="public/js/vendor/mdl/material.min.js"></script>
+        <script src="app/app.js"></script>
+        <script src="app/routes/route.js"></script>
+        <script src="app/factories/mainFactory.js"></script>
+        <script src="app/services/mainService.js"></script>
+        <script src="app/directives/mainDirective.js"></script>
+        <script src="app/controllers/mainController.js"></script>
 </body>
 
 </html>

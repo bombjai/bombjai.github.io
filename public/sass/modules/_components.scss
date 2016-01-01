@@ -5,4 +5,47 @@
 @import "../base/mixins";
 @import "compass/css3";
 
-
+// ** Modal Box  ** //
+// Usage
+// <div id="bindToClick" class="overlay">
+//    <div class="popup">
+// 		<div class="close">X</div>
+// 		<div class="content"></div>
+//    </div>
+// </div>
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    //start popup animation
+    //transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    &:target {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+.popup {
+    position: relative;
+    margin: 70px auto;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    //close effect
+    //transition: all 3s ease-in-out;
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 40px;
+        //transition: all 200ms;
+        text-decoration: none;
+    }
+    .content {
+        max-height: 30%;
+        overflow: auto;
+    }
+}
