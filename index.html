@@ -11,16 +11,20 @@
     <link rel="stylesheet" type="text/css" href="public/css/default.css">
     <link rel="stylesheet" href="public/css/vendor/mdl/material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
 
 <body>
     <h1>welcome to my page</h1>
     <div ng-controller="homepageCtrl">
         {{firstName}} 
-			<ng-view></ng-view>
+			
 
         <a href="home1">Home 1</a>
         <a href="home2">Home 2</a>
+
+
+<div ng-view></div>
 
         <!-- Accent-colored raised button with ripple -->
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
