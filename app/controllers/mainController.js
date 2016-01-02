@@ -5,6 +5,16 @@ app.controller('homepageCtrl', ['$scope', function($scope) {
 }]);
 
 
+app.controller('homeOneCtrl', ['$scope', function($scope) {
+	$scope.firstName = 'my FIRST PAGE ROUTE';
+}]);
+
+
+app.controller('homeTwoCtrl', ['$scope', function($scope) {
+	$scope.firstName = 'SECOND PAGE IS GOOD';
+}]);
+
+
 
 app.controller("PaginationCtrl", ['$scope', 'Item', function($scope, Item) {
 
