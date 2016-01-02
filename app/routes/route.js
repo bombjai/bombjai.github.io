@@ -1,22 +1,13 @@
-app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-//var site_prefix = '/test';
-
-$routeProvider.
-  when('/home1', {
-    //title: 'HOME Page',
-    //controller: 'homepageCtrl',
-    templateUrl: 'partials/home1.html'
-  })
-
-
-  .when('/home2', {
-    //title: 'HOME 2 Page',
-    //controller: 'homepageCtrl',
-    templateUrl: 'partials/home2.html'
-  })
-
-      .otherwise({
-        redirectTo: '/'
+app.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/home1', {
+                templateUrl: 'partials/home1.html'
+      }).
+      when('/home2', {
+        templateUrl: 'partials/home2.html'
+      }).
+      otherwise({
+        redirectTo: '/phones'
       });
- $locationProvider.html5Mode({ enable: true, requireBase: false});
-}]);
+  }]);
