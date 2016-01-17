@@ -1,2 +1,38 @@
 @import "../base/_variables";
+@import "compass/css3";
 
+//breakpoints
+$mobile: 5;
+$tablet: 11;
+$desktop: 16;
+
+//susy grid
+$total-columns: 12;
+$column-width: 4em;
+$container-width: 1200px;
+$gutter-width: 1/4;
+$grid-padding: $gutter-width;
+
+@include border-box-sizing;
+
+
+$susy: (
+	columns: $total-columns,
+ 	container: $container-width,
+	gutters: $gutter-width,
+	global-box-sizing: border-box,
+	debug: (image: hide)
+);
+
+
+.wrap {
+	@include container;
+}
+
+.content {
+	@include span(8);
+}
+
+.sidebar {
+	@include span(4 last);
+}
