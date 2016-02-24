@@ -1,0 +1,31 @@
+
+ 
+ function getCount(array, xpath) {
+ 		var sp = Defiant.getSnapshot(array);
+ 		return JSON.search(sp,xpath).length;
+ }
+
+var status = ["open","close","update"];
+//var bureau = ["efx","tu","xpn"];
+
+var result = [];
+
+ for( var i = 0, keyLength = status.length; i< keyLength; i++) {
+
+  result.push({ 
+    status: status[i], 
+    totalCount: getCount(arrPages, '//*[condition="' +  status[i] +  '"]'),
+    //efxCount:  getCount(arrPages, '//efx/status/[condition="'+  status[i] + '"]')
+    efx:  getCount(arrPages, '//efx//*[condition="' +  status[i] +  '"]'),
+    tu:  getCount(arrPages, '//tu//*[condition="' +  status[i] +  '"]'),
+    xpn:  getCount(arrPages, '//xpn//*[condition="' +  status[i] +  '"]')
+     //efxCount: getCount(arrPages, '//efx/status/[condition="'+  status[i] + '"]')
+     //tuCount: getCount(arrPages, '//tu/status/condition')
+  });
+ 
+ }
+ 
+ 
+console.time(result);
+console.log("safads",result);
+console.timeEnd(result);
