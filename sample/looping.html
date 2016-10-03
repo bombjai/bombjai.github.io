@@ -13,3 +13,24 @@ for (var i = 0, keys = Object.keys(object), l = keys.length; i < l; ++i) {
 	
 for (var i = 0, l = a.length; i < l; i++) {}
 
+
+example for obj loop:
+/* 
+i = object key/aka item number
+itemObj = the current object you looping
+field = special obj field you want to check
+"whatever" = the value of the field
+*/
+
+var newObj = [];
+var parsed = "";
+ for (var i in itemObj) {
+     if (!itemObj.hasOwnProperty(i)) { continue; }
+	 if (itemObj[i].field == "whatever") {
+		 newObj.push(itemObj[i]);
+	 }
+ }
+ console.log("new object", newObj);
+
+
+
