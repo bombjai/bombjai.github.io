@@ -1,0 +1,40 @@
+<html>
+<head>
+
+
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+
+
+<body>
+
+
+
+
+<script>
+
+
+$.ajax({
+
+    url : "https://geo.spotmobile.io/properties?latitude=37.78550332&longitude=-122.4059937&limit=1&active=true&kind=property&key=nordsense-12c7af7b1362eca4fc845188f4c75474",
+    type : 'GET',
+    dataType:'json',
+   // crossDomain: true,
+     contentType: "application/json;charset=utf-8",
+    success : function(data) {              
+        console.log('Data: '+data);
+    },
+    error : function(request,error)
+    {
+        console.log("Request: "+JSON.stringify(request));
+    }
+});
+
+
+</script>
+
+
+
+</body>
+</html>
