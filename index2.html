@@ -23,7 +23,7 @@ $.ajax({
    // crossDomain: true,
      contentType: "application/json;charset=utf-8",
     success : function(data) {              
-        console.log('Data: '+ JSON.stringify(data));
+        console.log('Data: '+ data.extra, data.extra, data.extra.ADDRESS_LINE_1);
     },
     error : function(request,error)
     {
