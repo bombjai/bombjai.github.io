@@ -1419,8 +1419,8 @@ var long = ["-122.5092906",
      // crossDomain: true,
        contentType: "application/json",
       success : function(data) {              
-          console.log('Data: '+ data, data.extra);
-        $('#table').append("<tr><td>data</td></tr>")
+          console.log('Data: '+ data[0], data[0].extra);
+        $('#table').append("<tr><td>"+lat+"</td><td>"+long+"</td><td>"+data[0].extra.ADDRESS_LINE_1+"</td></tr>")
       },
       error : function(request,error)
       {
