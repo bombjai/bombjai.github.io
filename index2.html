@@ -2299,7 +2299,7 @@ var long = ["-122.5092906",
 "-122.506122920408"]
  
  
- function callApi (lat, long) {
+ function callApi (lat, long, num) {
     $.ajax({
       url : "https://geo.spotmobile.io/properties?latitude="+lat+"&longitude="+long+"&limit=1&active=true&kind=property&key=nordsense-12c7af7b1362eca4fc845188f4c75474",
       type : 'GET',
@@ -2308,7 +2308,7 @@ var long = ["-122.5092906",
        contentType: "application/json",
       success : function(data) {              
           console.log('Data: '+ data[0], data[0].extra);
-        $('#table').append("<tr><td>"+data[0].extra.ADDRESS_NUMBER+ " "+data[0].extra.ADDRESS_LINE_1+"</td><td>"+data[0].extra.PROPERTY_ID+"</td></tr>")
+        $('#table').append("<tr><td>"+num+"</td><td>"+data[0].extra.ADDRESS_NUMBER+ " "+data[0].extra.ADDRESS_LINE_1+"</td><td>"+data[0].extra.PROPERTY_ID+"</td></tr>")
       },
       error : function(request,error)
       {
@@ -2324,7 +2324,7 @@ var long = ["-122.5092906",
   
   var i;
   for (i = 0; i < longTest.length; i++) {
-    callApi(latTest[i], longTest[i])
+    callApi(latTest[i], longTest[i], i)
   }
  })
  
