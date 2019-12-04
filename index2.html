@@ -2308,7 +2308,7 @@ var long =["-122.509290589745",
        contentType: "application/json",
       success : function(data) {              
          if (data[0] && data[0].extra) {
-             $('#table').append("<tr><td>"+num+"</td><td>"+data[0].extra.ADDRESS_NUMBER+ " "+data[0].extra.ADDRESS_LINE_1+"</td><td>"+data[0].extra.PROPERTY_ID+"</td></tr>")
+             $('#table').append("<tr><td>"+num+"</td><td>"+lat+"</td><td>"+long+"</td><td>"+data[0].extra.ADDRESS_NUMBER+ " "+data[0].extra.ADDRESS_LINE_1+"</td><td>"+data[0].extra.PROPERTY_ID+"</td></tr>")
 	 } else {
 	   $('#table').append("<tr><td>"+num+"</td><td></td>><td></td></tr>");
 	 }
@@ -2326,8 +2326,8 @@ var long =["-122.509290589745",
  $(function(){
   
   var i;
-  for (i = 0; i < longTest.length; i++) {
-    callApi(latTest[i], longTest[i], i)
+  for (i = 0; i < long.length; i++) {
+    callApi(lat[i], long[i], i)
   }
  })
  
