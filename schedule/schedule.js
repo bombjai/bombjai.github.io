@@ -94,8 +94,6 @@ var scheduler = {
 		var timeInfo = '<div class="time">'+this.buildTimeZone(data, actInfo)+'</div>'
 
 		$('.copy-'+data.num).append(timeInfo + dateInfo + actInfo +"<br/>");
-
-
 	},
 
 
@@ -138,18 +136,16 @@ var scheduler = {
 			usTime = "",
 			koTime = "",
 			twTime = "",
-			euTime = "",
-			lineText = "";
-
+			euTime = "";
 
 		var fullDay = today + " " + hour + ":" + min + ":00";
 		//var thisday = moment(fullDay);
 
 		if (this.currentTime == "Asia/Seoul") {
-			twTime = moment(fullDay).subtract(1, 'hours').format("ha");
-			koTime = moment(fullDay).format("ha");
-			usTime = moment(fullDay).subtract(17, 'hours').format("ha");
-			euTime = moment(fullDay).subtract(8, 'hours').format("ha");
+			twTime = moment(fullDay).subtract(1, 'hours').format("hh:mma");
+			koTime = moment(fullDay).format("hh:mma");
+			usTime = moment(fullDay).subtract(17, 'hours').format("hh:mma");
+			euTime = moment(fullDay).subtract(8, 'hours').format("hh:mma");
 		}
 
 		// console.log("full dat", fullDay);
@@ -158,13 +154,15 @@ var scheduler = {
 		// console.log('us ',  moment.tz(thisday, "America/Los_Angeles").format("ha"));
 		//console.log('us ', moment(fullDay).tz(this.constant.us).format("HH"))
 
+		var lineText = "(台灣時間 " + twTime +", 한국시간 " + koTime + "시, PST " + usTime + ", CET " + euTime +")";
+
 		if (act.indexOf("No Stream") > -1) {
 			return "\n";
 		} else {
 			if (data.num == 0) {
-				lineText = "(台灣時間 " + twTime +", 한국시간 " + koTime + "시, PST " + usTime + ", CET " + euTime +")\n";
+				lineText = lineText+"\n";
 			} else {
-				lineText = "\n(台灣時間 " + twTime +", 한국시간 " + koTime + "시, PST " + usTime + ", CET " + euTime +")\n";
+				lineText = "\n"+lineText+"\n";
 			}
 		}
 		
