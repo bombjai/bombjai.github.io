@@ -22,6 +22,7 @@
 	    padding: 1px 10px 10px;
 	    color: white;
 	    margin-top: 40px;
+	    border-radius: 5px;
 	}
 
   	.ct-list,  .tz-list {
@@ -30,12 +31,13 @@
 	    margin: 0;
 	    padding: 0;
   	}
-  	.ct-list li, .tz-list li {padding-right: 10px;}
+  	.tz-list li {padding-right: 10px;}
 	
 	.ct-list li {
 	    border: 1px solid #ccc;
-	    padding: 5px;
+	    padding: 10px;
 	    margin-right: 5px;
+            border-radius: 5px;
 	}
 
   	.main {
