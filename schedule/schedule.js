@@ -43,8 +43,8 @@ var scheduler = {
 
 	buildCurrentTime: function() {
 		return "<div><ul class='ct-list'>"
-			   + "<li><span class='bold'>Korea</span>: "+ this.getCurrent(this.constant.ko) +"</li>"
 			   + "<li><span class='bold'>Taiwan</span>: "+ this.getCurrent(this.constant.tw) +"</li>"
+			   + "<li><span class='bold'>Korea</span>: "+ this.getCurrent(this.constant.ko) +"</li>"
 			   + "<li><span class='bold'>US</span>: "+ this.getCurrent(this.constant.us) +"</li>"
 			   + "<li><span class='bold'>Europe</span>: "+ this.getCurrent(this.constant.eu) +"</li>"
 			   +"</ul></div>"
@@ -235,6 +235,7 @@ var scheduler = {
 	generateText: function() {
 		$('#picker-wrapper').hide();
 		$('#result').removeClass('hide');
+		$('#note').removeClass('hide');
 
 		this.buildWeekData('text');
 	}, 
