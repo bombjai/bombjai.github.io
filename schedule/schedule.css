@@ -56,7 +56,17 @@
   	}
 
   	.copy-style {margin-bottom: 10px;}
-
+	
+	.card {
+	    border: 1px solid #ccc;
+	    padding: 0 10px;
+	    margin-bottom: 10px;
+	    border-radius: 5px;
+	    color: white;
+	    background-color: #a6a6dc;
+	    max-width: 800px;
+	    box-shadow: 2px 3px #ececec;
+	}
   	.btn {
   		background-color: #f44336;
 	    border: 1px solid #ccc;
