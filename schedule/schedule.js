@@ -65,7 +65,7 @@ var scheduler = {
 
 				this.buildTextSchedule(data);
 			} else {
-				$('.ind-wrapper').append('<div class="indv individual-'+i+'"></div>')
+				$('.ind-wrapper').append('<div class="card individual-'+i+'"></div>')
 
 				this.buildWeekTemplate(data);
 			}
