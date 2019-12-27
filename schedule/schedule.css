@@ -17,6 +17,13 @@
 
   	.indv {border-bottom: 1px solid #ccc;}
 
+	#note {
+	    background-color: #a6a6dc;
+	    padding: 1px 10px 10px;
+	    color: white;
+	    margin-top: 40px;
+	}
+
   	.ct-list,  .tz-list {
 	    list-style: none;
 	    display: inline-flex;
