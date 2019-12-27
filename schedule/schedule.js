@@ -233,12 +233,16 @@ var scheduler = {
 	},
 
 	generateText: function() {
+		this.hideFirstPage();
+		this.buildWeekData('text');
+	}, 
+	
+	hideFirstPage: function() {
 		$('#picker-wrapper').hide();
 		$('#result').removeClass('hide');
 		$('#note').removeClass('hide');
-
-		this.buildWeekData('text');
-	}, 
+		$('#reset').removeClass('hide');
+	},
 
 	copyText: function(element) {
 	  var text = $(element).clone().find('br').prepend('\r\n').end().text()
