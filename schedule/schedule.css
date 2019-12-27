@@ -31,7 +31,12 @@
 	    padding: 0;
   	}
   	.ct-list li, .tz-list li {padding-right: 10px;}
-
+	
+	.ct-list li {
+	    border: 1px solid #ccc;
+	    padding: 5px;
+	    margin-right: 5px;
+	}
 
   	.main {
   		margin-top: 20px;
