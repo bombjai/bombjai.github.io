@@ -91,7 +91,7 @@ var scheduler = {
 	buildTextSchedule: function(data) {
 		var dateInfo = '<span class="copy-breaker">'+ data.day + ' (' + data.week + ') - </span>';
 		var actInfo = '<span>'+$('.select-list-'+data.num).val()+'</span>'
-		var timeInfo = '<div class="time">'+this.buildTimeZone(data)+'</div>'
+		var timeInfo = '<div class="time">'+this.buildTimeZone(data, actInfo)+'</div>'
 
 		$('.copy-'+data.num).append(timeInfo + dateInfo + actInfo +"<br/>");
 
@@ -130,7 +130,7 @@ var scheduler = {
 		}
 	},
 
-	buildTimeZone: function(data) {
+	buildTimeZone: function(data, act) {
 
 		var today = this.getFullDay(data.num),
 			hour = $('.hour-list-'+data.num).val().toString(), 
@@ -152,18 +152,20 @@ var scheduler = {
 			euTime = moment(fullDay).subtract(8, 'hours').format("ha");
 		}
 
-
 		// console.log("full dat", fullDay);
 		// console.log("thid dat", thisday);
 		// console.log('korean ', moment.tz(thisday, "Asia/Seoul").format("ha"));
 		// console.log('us ',  moment.tz(thisday, "America/Los_Angeles").format("ha"));
 		//console.log('us ', moment(fullDay).tz(this.constant.us).format("HH"))
 
-
-		if (data.num == 0) {
-			lineText = "(台灣時間 " + twTime +", 한국시간 " + koTime + "시, PST " + usTime + ", CET " + euTime +")\n";
+		if (act.indexOf("No Stream") > -1) {
+			return "\n";
 		} else {
-			lineText = "\n(台灣時間 " + twTime +", 한국시간 " + koTime + "시, PST " + usTime + ", CET " + euTime +")\n";
+			if (data.num == 0) {
+				lineText = "(台灣時間 " + twTime +", 한국시간 " + koTime + "시, PST " + usTime + ", CET " + euTime +")\n";
+			} else {
+				lineText = "\n(台灣時間 " + twTime +", 한국시간 " + koTime + "시, PST " + usTime + ", CET " + euTime +")\n";
+			}
 		}
 		
 		return lineText;
