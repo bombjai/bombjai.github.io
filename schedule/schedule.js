@@ -209,8 +209,8 @@ var scheduler = {
 		}
 
 		
-		var lineText = "(台灣時間 " + twTime +", 한국시간 " + koTime + "시, PST " + usTime + ", CET " + euTime +")";
-		var lineTextExtent = "(台灣時間 " + twTime+"-"+twTimeExtend +", 한국시간 " + koTime+"-"+koTimeExtend + "시, PST " + usTime+"-"+usTimeExtend + ", CET " + euTime+"-"+euTimeExtend +")";
+		var lineText = "(台灣時間 " + twTime +", 한국시간 " + koTime + ", PST " + usTime + ", CET " + euTime +")";
+		var lineTextExtent = "(台灣時間 " + twTime+"-"+twTimeExtend +", 한국시간 " + koTime+"-"+koTimeExtend + ", PST " + usTime+"-"+usTimeExtend + ", CET " + euTime+"-"+euTimeExtend +")";
 		var returnText = "";
 
 		if (act.indexOf("No Stream") > -1) {
