@@ -1,9 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-ko">
 <head>
-	<title></title>
+	<title>Scheduler</title>
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="schedule.css">
 </head>
 <body>
 
+	<div class="main_container">
+		<div class="time-wrapper">
+			<h2 class="bold underline">Current Time</h2>
+			<div class="currentTime"></div>
+		</div>
+
+		<div id="picker-wrapper">
+			<div class="filter">
+				<h2 class="bold underline">Timezone</h2>
+				<ul class="tz-list">
+					<li><label><input type="radio" name="timezone" value="Asia/Seoul" checked>  Korea</label></li>
+					<li><label><input type="radio" name="timezone" value="Asia/Taipei">  Taiwan </label></li>
+					<li><label><input type="radio" name="timezone" value="America/Los_Angeles"> US</label></li>
+					<li><label><input type="radio" name="timezone" value="Europe/Paris"> EU </label></li>
+				</ul>
+				
+			</div>
+			<div class="main">
+				<div><h2 class="bold underline ilblock"> Main selection</h2> <span class="ilblock">(time selection is based on the timezone selected above)</span></div>
+				<button id="top-btn" class="btn" onclick="scheduler.generateText()">Generate Schedule</button>
+			</div>
+			<div class="ind-wrapper"></div>
+
+			<div class="action hide">
+				["PC Stream (電腦實況, 컴터방송)", "Outdoor Stream (戶外實況, 야외방송)", "No Stream (沒有實況, 휴방)"];
+
+				(台灣時間 7~8 pm, 한국시간 8~9시, PST 3~4am, CET 12~1pm)
+			</div>
+
+			<div>
+				<button id="bot-btn" class="btn" onclick="scheduler.generateText()">Generate Schedule</button>
+			</div>
+		</div>
+
+		<div id="result" class="hide">
+			<div><h2>Schedule</h2> (reload page to start over)</div>
+			<button id="copy-btn" class="btn" onclick="scheduler.copyText('#copy')">Copy Text</button> 
+
+			<span class="hide copy-final">Copied successfully!</span>
+
+			<div id="copy" class="copy" contenteditable="true"></div>
+
+		</div>
+	
+	</div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script type="text/javascript" src="moment-timezone.min.js"></script>
+  <script type="text/javascript" src=" moment-timezone-with-data.min.js"></script>
+
+   <script type="text/javascript" src="schedule.js"></script>
 </body>
 </html>
