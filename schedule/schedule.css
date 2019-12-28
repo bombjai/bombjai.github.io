@@ -1,6 +1,8 @@
   	 body {
- 	    background-color: #f7f7f7;
-           font-family: 'Noto Sans', sans-serif;
+ 	      background-color: #f7f7f7;
+         font-family: 'Noto Sans', sans-serif;
+         margin: 0;
+        padding: 0px;
   	 }
   	.bold {font-weight:600;}
   	.underline {text-decoration: underline;}
@@ -8,12 +10,46 @@
   	.ilblock {
   		display: inline-block;
   	}
+    .noMB {
+      margin-bottom: 0;
+    }
+
+    .title {
+          background-color: #2b2929;
+      margin: 0;
+      color: white;
+      text-align: center;
+      padding: 8px;
+    }
+
+    #picker-wrapper {
+      padding: 8px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .currentTime {
+      padding: 8px;
+      margin: 12px auto 0;
+      text-align: center;
+    }
+
+    .ind-wrapper {
+      text-align: center;
+      margin: 0 auto;
+      display: table;
+    }
+
+    #result {
+      text-align: center;
+     margin: 0 auto;
+    }
 
   	.day-breaker {
-	    font-size: 16px;
-    	    font-weight: bold;
-    	    color: #7d124d;
-    	    margin: 12px 0 8px;
+	    font-size: 18px;
+	    font-weight: bold;
+	    color: white;
+	    margin: 5px 0 8px;
   	}
 
   	.indv {border-bottom: 1px solid #ccc;}
@@ -23,7 +59,9 @@
 	    padding: 1px 10px 10px;
 	    color: white;
 	    margin-top: 40px;
-	    border-radius: 5px;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
 	}
 
   	.ct-list,  .tz-list {
@@ -38,12 +76,54 @@
 	    border: 1px solid #ccc;
 	    padding: 10px;
 	    margin-right: 5px;
-            border-radius: 5px;
+      border-radius: 5px;
+      cursor: pointer;
 	}
 
-  	.main {
-  		margin-top: 20px;
-  	}
+  .ct-list li label {
+    cursor: pointer;
+  }
+
+   .ct-list li.active:nth-child(1) {
+    background-color: #80CBC4;
+    color: white;
+    cursor: default;
+  }
+
+   .ct-list li.active:nth-child(1) label {
+       cursor: default;
+   }
+
+  .ct-list li.active:nth-child(2) {
+    background-color: #B39DDB;
+    color: white;
+    cursor: default;
+  }
+
+   .ct-list li.active:nth-child(2) label {
+       cursor: default;
+   }
+
+   .ct-list li.active:nth-child(3) {
+    background-color: #90CAF9;
+    color: white;
+    cursor: default;
+  }
+
+   .ct-list li.active:nth-child(3) label {
+       cursor: default;
+   }
+
+    .ct-list li.active:nth-child(4) {
+    background-color: #FFB74D;
+    color: white;
+    cursor: default;
+  }
+
+   .ct-list li.active:nth-child(4) label {
+       cursor: default;
+   }
+
   	.copy-final { color: green; margin-left: 10px; font-size: 16px; font-weight: bold;}
 
   	.thingList, .minList:after {display: block;}
@@ -63,16 +143,19 @@
 	    margin-bottom: 10px;
 	    border-radius: 5px;
 	    color: white;
-	    background-color: #a6a6dc;
-	    max-width: 800px;
+	    background-color: #B39DDB;
+	    max-width: 880px;
 	    box-shadow: 2px 3px #ececec;
 	}
 
 	#reset {
-	    position: absolute;
-	    right: 20px;
-	    top: 0;
-	    background-color: gray;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: gray;
+    margin: 0;
+    height: 19px;
+    border: none;
 	}
 
 	#reset:hover {

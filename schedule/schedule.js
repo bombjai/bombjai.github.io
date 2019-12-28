@@ -43,11 +43,11 @@ var scheduler = {
 
 	buildCurrentTime: function() {
 		return "<div><ul class='ct-list'>"
-			   + "<li><span class='bold'>Taiwan</span>: "+ this.getCurrent(this.constant.tw) +"</li>"
-			   + "<li><span class='bold'>Korea</span>: "+ this.getCurrent(this.constant.ko) +"</li>"
-			   + "<li><span class='bold'>US</span>: "+ this.getCurrent(this.constant.us) +"</li>"
-			   + "<li><span class='bold'>Europe</span>: "+ this.getCurrent(this.constant.eu) +"</li>"
-			   +"</ul></div>"
+			   + "<li><label for='tw-radio'><span class='bold'>Taiwan</span>: "+ this.getCurrent(this.constant.tw) +"</label></li>"
+			   + "<li class='active'><label for='ko-radio'><span class='bold'>Korea</span>: "+ this.getCurrent(this.constant.ko) +"</label></li>"
+			   + "<li><label for='us-radio'><span class='bold'>US</span>: "+ this.getCurrent(this.constant.us) +"</label></li>"
+			   + "<li><label for='eu-radio'><span class='bold'>Europe</span>: "+ this.getCurrent(this.constant.eu) +"</label></li>"
+			   + "</ul></div>"
 
 	},
 
@@ -80,7 +80,7 @@ var scheduler = {
 		 	ddMinList = '<select class="minList min-list-'+data.num+'"></select>',
 		 	ckbox = '<input type="checkbox" name="extend" id="estimate-'+data.num+'"></input>';
 
-		$('.individual-'+data.num).append('<div class="day-breaker">'+ data.day + ' (' + data.week + ') - </div>');
+		$('.individual-'+data.num).append('<div class="day-breaker">'+ data.day + ' (' + data.week + ') </div>');
 		$('.individual-'+data.num).append('<span>Activity: '+ddList+' </span>');		
 		this.buildDropDown(data.num);
 
@@ -262,10 +262,23 @@ var scheduler = {
 	}
 };
 
+
 $(function(){
+	scheduler.init();
+
 	$('input[type=radio][name=timezone]').change(function() {
         scheduler.currentTime = this.value
 	});
 
-	scheduler.init();
+	$('.ct-list li, .ct-list li label').on('click', function(event) {
+	  var $this = $(this);
+	  event.stopPropagation();
+	  $('.ct-list li').removeClass('active');
+	  if ($this[0].localName == 'li') {
+	  	$this.addClass('active');
+	  } else {
+	  	$this.parent().addClass('active');
+	  }
+	});
+	
 });

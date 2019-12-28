@@ -17,23 +17,30 @@
 		<a id="reset" class="btn hide" href="schedule.html">Start Over</a>
 		
 		<div class="time-wrapper">
-			<h2 class="bold">Current Time</h2>
+			<h2 class="title">Jinny's Scheduler</h2>
 			<div class="currentTime"></div>
 		</div>
 
 		<div id="picker-wrapper">
-			<div class="filter">
+			<div class="filter hide">
 				<h2 class="bold">Timezone</h2>
 				<ul class="tz-list">
-					<li><label><input type="radio" name="timezone" value="Asia/Taipei">  Taiwan </label></li>
-					<li><label><input type="radio" name="timezone" value="Asia/Seoul" checked>  Korea</label></li>
-					<li><label><input type="radio" name="timezone" value="America/Los_Angeles"> US</label></li>
-					<li><label><input type="radio" name="timezone" value="Europe/Paris"> EU </label></li>
+					<li>
+						<input id="tw-radio" type="radio" name="timezone" value="Asia/Taipei" />Taiwan 
+					</li>
+					<li>
+						<input id="ko-radio" type="radio" name="timezone" value="Asia/Seoul" checked />  Korea
+					</li>
+					<li>
+						<input id="us-radio" type="radio" name="timezone" value="America/Los_Angeles" /> US
+					</li>
+					<li>
+						<input id="eu-radio" type="radio" name="timezone" value="Europe/Paris" /> EU 
+					</li>
 				</ul>
 				
 			</div>
 			<div class="main">
-				<div><h2 class="bold ilblock"> Main selection</h2> <span class="ilblock">(time selection is based on the timezone selected above)</span></div>
 				<button id="top-btn" class="btn" onclick="scheduler.generateText()">Generate Schedule</button>
 			</div>
 			<div class="ind-wrapper"></div>
@@ -50,7 +57,7 @@
 		</div>
 
 		<div id="result" class="hide">
-			<div><h2>Schedule</h2></div>
+			<div><h2 class="noMB">Schedule</h2></div>
 			<button id="copy-btn" class="btn" onclick="scheduler.copyText('#copy')">Copy Text</button> 
 
 			<span class="hide copy-final">Copied successfully!</span>
