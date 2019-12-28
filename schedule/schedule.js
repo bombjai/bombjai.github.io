@@ -66,7 +66,7 @@ var scheduler = {
 	buildWeekData: function(opt) {
 		var data = {};
 
-		for (var i = 0, length = this.weekNum; i < length; i++) {
+		for (var i = -1, length = this.weekNum; i < length; i++) {
 			data.day = this.getDay(i);
 			data.week = this.getWeek(i);
 			data.fullday = this.getFullDay(i);
@@ -87,13 +87,13 @@ var scheduler = {
 	},
 
 	buildWeekTemplate: function(data) {
-		var ddList = '<select class="thingList select-list-'+data.num+'"></select>',
-		 	ddHourList = '<select class="hourList hour-list-'+data.num+'"></select>',
-		 	ddMinList = '<select class="minList min-list-'+data.num+'"></select>',
-		 	ckbox = '<input type="checkbox" name="extend" id="estimate-'+data.num+'"></input>';
+		var ddList = '<select class="thingList select-css select-list-'+data.num+'"></select>',
+		 	ddHourList = '<select class="hourList select-css hour-list-'+data.num+'"></select>',
+		 	ddMinList = '<select class="minList select-css min-list-'+data.num+'"></select>',
+		 	ckbox = '<input type="checkbox" name="extend" class="checkbox-label" id="estimate-'+data.num+'"></input>';
 
 		$('.individual-'+data.num).append('<div class="day-breaker">'+ data.day + ' (' + data.week + ') </div>');
-		$('.individual-'+data.num).append('<span>Activity: '+ddList+' </span>');		
+		$('.individual-'+data.num).append('<span class="block tal">Activity: '+ddList+' </span>');		
 		this.buildDropDown(data.num);
 
 		$('.individual-'+data.num).append('<span class="space">Hour: '+ddHourList+' </span>');
