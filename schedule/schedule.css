@@ -40,6 +40,19 @@
       display: table;
     }
 
+    .ind-wrapper.ko-style .card {
+      background-color: #B39DDB;
+    }
+    .ind-wrapper.tw-style .card {
+      background-color: #80CBC4;
+    }
+    .ind-wrapper.us-style .card {
+      background-color: #90CAF9;
+    }
+    .ind-wrapper.eu-style .card {
+      background-color: #FFB74D;
+    }
+
     #result {
       text-align: center;
      margin: 0 auto;
@@ -175,7 +188,7 @@
 	    cursor: pointer;
   	}
   	.btn:hover {
-  		background-color: green;
+  		background-color: #FF6E40;
   	}
 
 

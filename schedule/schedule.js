@@ -41,6 +41,18 @@ var scheduler = {
 		}
 	},
 
+	lookUpTimeName: function (name) {
+		if (name == this.constant.ko) {
+			return "ko-style";
+		} else if (name == this.constant.tw) {
+			return "tw-style";
+		} else if (name == this.constant.us) {
+			return "us-style";
+		} else if (name == this.constant.eu) {
+			return "eu-style";
+		}
+	},
+
 	buildCurrentTime: function() {
 		return "<div><ul class='ct-list'>"
 			   + "<li><label for='tw-radio'><span class='bold'>Taiwan</span>: "+ this.getCurrent(this.constant.tw) +"</label></li>"
@@ -268,6 +280,8 @@ $(function(){
 
 	$('input[type=radio][name=timezone]').change(function() {
         scheduler.currentTime = this.value
+        var styleName = scheduler.lookUpTimeName(this.value)
+        $('.ind-wrapper').removeClass().addClass('ind-wrapper').addClass(styleName)
 	});
 
 	$('.ct-list li, .ct-list li label').on('click', function(event) {
@@ -279,6 +293,8 @@ $(function(){
 	  } else {
 	  	$this.parent().addClass('active');
 	  }
+
+
 	});
-	
+
 });
