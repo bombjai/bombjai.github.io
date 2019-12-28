@@ -69,7 +69,7 @@
 
 	#note {
 	    background-color: #a6a6dc;
-	    padding: 1px 10px 10px;
+	    padding: 0 0 10px;
 	    color: white;
 	    margin-top: 40px;
       position: absolute;
@@ -150,7 +150,12 @@
   	}
 
   	.copy-style {margin-bottom: 10px;}
-	
+    
+	 .secret {    
+    margin-top: 150px;
+    color: white;
+  }
+
 	.card {
 	    border: 1px solid #ccc;
 	    padding: 0 10px;
