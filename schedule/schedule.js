@@ -131,13 +131,13 @@ var scheduler = {
 
 		while (counter < hour) {
 			if (counter < 10) {
-				$('.hour-list-'+i).append('<option val="0'+counter+'">0'+counter+'</option>');
+				$('.hour-list-'+i).append('<option value="0'+counter+'">'+moment(counter, "HH").format("hh a")+'</option>');
 			}
 			else if (counter == 12) {
-				$('.hour-list-'+i).append('<option selected val="'+counter+'">'+counter+'</option>');
+				$('.hour-list-'+i).append('<option selected value="'+counter+'">'+ moment(counter, "HH").format("hh a") +'</option>');
 			}
 			else {
-				$('.hour-list-'+i).append('<option val="'+counter+'">'+counter+'</option>');
+				$('.hour-list-'+i).append('<option value="'+counter+'">'+moment(counter, "HH").format("hh a")+'</option>');
 			}
 		  counter++;
 		}
