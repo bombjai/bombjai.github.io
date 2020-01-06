@@ -14,7 +14,7 @@ var scheduler = {
 		"us": "America/Los_Angeles",
 		"eu": "Europe/Paris",
 	},
-	itemList: ["PC Stream (電腦實況, 컴터방송)", "Outdoor Stream (戶外實況, 야외방송)", "No Stream (沒有實況, 휴방)"],
+	itemList: ["PC Stream (電腦實況, 컴터방송)", "Outdoor Stream (戶外實況, 야외방송)", "No Stream (沒有實況, 휴방)", "Rerun (重播, 다시 하다)"],
 
 	getWeek: function(day) {
 		return moment().add(day, 'days').tz(this.currentTime).format('ddd').toUpperCase();
