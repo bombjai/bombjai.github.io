@@ -14,7 +14,7 @@ var scheduler = {
 		"us": "America/Los_Angeles",
 		"eu": "Europe/Paris",
 	},
-	itemList: ["PC Stream (電腦實況, 컴터방송)", "Outdoor Stream (戶外實況, 야외방송)", "No Stream (沒有實況, 휴방)", "Rerun (重播, 다시 하다)"],
+	itemList: ["Nothing (no activity display)", "PC Stream (電腦實況, 컴터방송)", "Outdoor Stream (戶外實況, 야외방송)", "No Stream (沒有實況, 휴방)", "Rerun (重播, 다시 하다)"],
 
 	getWeek: function(day) {
 		return moment().add(day, 'days').tz(this.currentTime).format('ddd').toUpperCase();
@@ -74,7 +74,7 @@ var scheduler = {
 
 			if (opt == 'text') {
 				$('.copy').append('<div class="copy-style copy-'+i+'"></div>')
-
+				data.textOnly = true;
 				this.buildTextSchedule(data);
 			} else {
 				$('.ind-wrapper').append('<div class="card individual-'+i+'"></div>')
@@ -105,8 +105,13 @@ var scheduler = {
 
 	buildTextSchedule: function(data) {
 		var dateInfo = '<span class="copy-breaker">'+ data.day + ' (' + data.week + ') - </span>';
-		var actInfo = '<span>'+$('.select-list-'+data.num).val()+'</span>'
-		var timeInfo = '<div class="time">'+this.buildTimeZone(data, actInfo)+'</div>'
+		
+		var selDDLval = $('.select-list-'+data.num).val();
+		if (data.textOnly && selDDLval.indexOf('Nothing') > -1) {
+			selDDLval = "&nbsp;";
+		}
+		var actInfo = '<span class="act-info">'+selDDLval+'</span>';
+		var timeInfo = '<div class="time">'+this.buildTimeZone(data, actInfo)+'</div>';
 
 		$('.copy-'+data.num).append(timeInfo + dateInfo + actInfo +"<br/>");
 	},
@@ -225,7 +230,10 @@ var scheduler = {
 		var lineTextExtent = "(台灣時間 " + twTime+"-"+twTimeExtend +", 한국시간 " + koTime+"-"+koTimeExtend + ", PST " + usTime+"-"+usTimeExtend + ", CET " + euTime+"-"+euTimeExtend +")";
 		var returnText = "";
 
+		console.log('aare waeftawes fa', act)
 		if (act.indexOf("No Stream") > -1) {
+			return "\n";
+		} else if (act.indexOf("&nbsp;") > -1) {
 			return "\n";
 		} else if (isChecked) {
 			if (data.num == 0) {
