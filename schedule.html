@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-ko">
+<head>
+	<title>Scheduler</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" >
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="schedule.css">
+</head>
+<body>
+
+	<div class="main_container">
+		<a id="reset" class="btn hide" href="schedule.html">Start Over</a>
+		<a id="goBack" class="btn hide" href="javascript:;" onclick="scheduler.goBackBtn()">Go Back</a>
+		
+		<div class="time-wrapper">
+			<h2 class="title">Jinny's Scheduler</h2>
+			<div class="currentTime"></div>
+		</div>
+
+		<div id="picker-wrapper">
+			<div class="filter hide">
+				<h2 class="bold">Timezone</h2>
+				<ul class="tz-list">
+					<li>
+						<input id="tw-radio" type="radio" name="timezone" value="Asia/Taipei" />Taiwan 
+					</li>
+					<li>
+						<input id="ko-radio" type="radio" name="timezone" value="Asia/Seoul" checked />  Korea
+					</li>
+					<li>
+						<input id="usEast-radio" type="radio" name="timezone" value="America/New_York" /> US East
+					</li>
+					<li>
+						<input id="us-radio" type="radio" name="timezone" value="America/Los_Angeles" /> US West
+					</li>
+					<li>
+						<input id="eu-radio" type="radio" name="timezone" value="Europe/Paris" /> EU 
+					</li>
+				</ul>
+				
+			</div>
+			<div class="main">
+				<button id="top-btn" class="btn" onclick="scheduler.generateText()">Generate Schedule</button>
+			</div>
+			<div class="ind-wrapper"></div>
+
+			<div class="action hide">
+				["PC Stream (電腦實況, 컴터방송)", "Outdoor Stream (戶外實況, 야외방송)", "No Stream (沒有實況, 휴방)"];
+
+				(台灣時間 7~8 pm, 한국시간 8~9시, PST 3~4am, CET 12~1pm)
+			</div>
+
+			<div>
+				<button id="bot-btn" class="btn" onclick="scheduler.generateText()">Generate Schedule</button>
+			</div>
+		</div>
+
+		<div id="result" class="hide">
+			<div><h2 class="noMB">Schedule</h2></div>
+			<button id="copy-btn" class="btn" onclick="scheduler.copyText('#copy')">Copy Text</button> 
+
+			<span class="hide copy-final">Copied successfully!</span>
+
+			<div id="copy" class="copy" contenteditable="true"></div>
+			<div class="secret">
+				I hope one day you will find this. Jinny, you are the best! Thank you for everything~~
+			</div>
+
+			<div id="note"> 
+				<p>*Please let me know if you find any bug or need to modify anything. You can reach me at discord:</p> 
+				<div class="bold">Little_Kaq#6963</div>
+			</div>
+		</div>
+	
+	</div>
+
+	
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script type="text/javascript" src="moment-timezone.min.js"></script>
+  <script type="text/javascript" src=" moment-timezone-with-data.min.js"></script>
+
+   <script type="text/javascript" src="schedule.js"></script>
+</body>
+</html>
