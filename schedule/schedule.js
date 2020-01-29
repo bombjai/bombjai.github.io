@@ -12,6 +12,7 @@ var scheduler = {
 		"ko": "Asia/Seoul",
 		"tw": "Asia/Taipei",
 		"us": "America/Los_Angeles",
+		"usEast": "America/New_York",
 		"eu": "Europe/Paris",
 	},
 	itemList: ["Nothing (no activity display)", "PC Stream (電腦實況, 컴터방송)", "Outdoor Stream (戶外實況, 야외방송)", "No Stream (沒有實況, 휴방)", "Rerun (重播, 다시 하다)"],
@@ -50,6 +51,8 @@ var scheduler = {
 			return "us-style";
 		} else if (name == this.constant.eu) {
 			return "eu-style";
+		} else if (name == this.constant.usEast) {
+			return "usEast-style";
 		}
 	},
 
@@ -57,7 +60,8 @@ var scheduler = {
 		return "<div><ul class='ct-list'>"
 			   + "<li><label for='tw-radio'><span class='bold'>Taiwan</span>: "+ this.getCurrent(this.constant.tw) +"</label></li>"
 			   + "<li class='active'><label for='ko-radio'><span class='bold'>Korea</span>: "+ this.getCurrent(this.constant.ko) +"</label></li>"
-			   + "<li><label for='us-radio'><span class='bold'>US</span>: "+ this.getCurrent(this.constant.us) +"</label></li>"
+			   + "<li><label for='us-radio'><span class='bold'>US (PST)</span>: "+ this.getCurrent(this.constant.us) +"</label></li>"
+			   + "<li><label for='usEast-radio'><span class='bold'>US (EST)</span>: "+ this.getCurrent(this.constant.usEast) +"</label></li>"
 			   + "<li><label for='eu-radio'><span class='bold'>Europe</span>: "+ this.getCurrent(this.constant.eu) +"</label></li>"
 			   + "</ul></div>"
 
@@ -98,7 +102,7 @@ var scheduler = {
 
 		$('.individual-'+data.num).append('<span class="space">Hour: '+ddHourList+' </span>');
 		$('.individual-'+data.num).append('<span class="space">Min: '+ddMinList+' </span>');
-		this.buildSchedule(data.num);
+		this.buildScheduleCard(data.num);
 
 		$('.individual-'+data.num).append('<span class="space"><label>Estimated (eg.12-1pm): '+ckbox+' </label></span>');
 	},
@@ -125,7 +129,7 @@ var scheduler = {
 		}
 	},
 
-	buildSchedule: function(i) {
+	buildScheduleCard: function(i) {
 		var counter = 0,
 		 	hour = 24,
 		 	min = ["00", "15", "30", "45"];
@@ -153,84 +157,37 @@ var scheduler = {
 		var today = this.getFullDay(data.num),
 			hour = $('.hour-list-'+data.num).val().toString(), 
 			min = $('.min-list-'+data.num).val().toString(),
-			usTime = "", usTimeExtend = "",
+			usWest = "", usWestExtend = "",
+			usEast = "", usEastExtend = "",
 			koTime = "", koTimeExtend = "",
 			twTime = "", twTimeExtend = "",
 			euTime = "", euTimeExtend = "";
+			var now = "";
 
 		var fullDay = today + " " + hour + ":" + min + ":00";
 		var isChecked = $('#estimate-'+data.num).is(":checked");
 		//var thisday = moment(fullDay);
 
-		//TODO: refoctor time
-		//Daylight 
-		if (this.currentTime == this.constant.ko) {
-			var twTemp = 1;
-			var usTemp = 17;
-			var euTemp = 8;
+		//the right way
+		//https://stackoverflow.com/questions/40401543/get-timezone-from-users-browser-using-momenttimezone-js
+		var currentTime = moment.tz(fullDay, this.currentTime);
+			koTime = currentTime.tz(this.constant.ko).format('hh:mma');
+			twTime = currentTime.tz(this.constant.tw).format('hh:mma');
+			usWest = currentTime.tz(this.constant.us).format('hh:mma');
+			usEast = currentTime.tz(this.constant.usEast).format('hh:mma');
+			euTime = currentTime.tz(this.constant.eu).format('hh:mma');
 
-			twTime = moment(fullDay).subtract(twTemp, 'hours').format('hh:mma');
-			koTime = moment(fullDay).format('hh:mma');
-			usTime = moment(fullDay).subtract(usTemp, 'hours').format('hh:mma');
-			euTime = moment(fullDay).subtract(euTemp, 'hours').format('hh:mma');
+		var currentTimeExtend = moment.tz(fullDay, this.currentTime).add(1, 'hours');
+			koTimeExtend = currentTimeExtend.tz(this.constant.ko).format('hh:mma');
+			twTimeExtend = currentTimeExtend.tz(this.constant.tw).format('hh:mma');
+			usWestExtend = currentTimeExtend.tz(this.constant.us).format('hh:mma');
+			usEastExtend = currentTimeExtend.tz(this.constant.usEast).format('hh:mma');
+			euTimeExtend = currentTimeExtend.tz(this.constant.eu).format('hh:mma');
 
-			twTimeExtend = moment(fullDay).subtract(twTemp -1, 'hours').format('hh:mma');
-			koTimeExtend = moment(fullDay).add(1, 'hours').format('hh:mma');
-			usTimeExtend = moment(fullDay).subtract(usTemp -1, 'hours').format('hh:mma');
-			euTimeExtend = moment(fullDay).subtract(euTemp -1, 'hours').format('hh:mma');
-		}
-		else if (this.currentTime == this.constant.tw) {
-			var koTemp = 1;
-			var usTemp = 16;
-			var euTemp = 7;
-
-			twTime = moment(fullDay).format('hh:mma'); 
-			koTime = moment(fullDay).add(koTemp, 'hours').format('hh:mma');
-			usTime = moment(fullDay).subtract(usTemp, 'hours').format('hh:mma');
-			euTime = moment(fullDay).subtract(euTemp, 'hours').format('hh:mma');
-
-			twTimeExtend = moment(fullDay).add(1, 'hours').format('hh:mma');
-			koTimeExtend = moment(fullDay).add(2, 'hours').format('hh:mma');
-			usTimeExtend = moment(fullDay).subtract(usTemp -1, 'hours').format('hh:mma');
-			euTimeExtend = moment(fullDay).subtract(euTemp -1, 'hours').format('hh:mma');
-		}
-		else if (this.currentTime == this.constant.us) {
-			var koTemp = 17;
-			var twTemp = 16;
-			var euTemp = 9;
-
-			twTime = moment(fullDay).add(twTemp, 'hours').format('hh:mma');
-			koTime = moment(fullDay).add(koTemp, 'hours').format('hh:mma');
-			usTime = moment(fullDay).format('hh:mma'); 
-			euTime = moment(fullDay).add(euTemp, 'hours').format('hh:mma');
-
-			twTimeExtend = moment(fullDay).add(twTemp +1, 'hours').format('hh:mma');
-			koTimeExtend = moment(fullDay).add(koTemp + 1, 'hours').format('hh:mma');
-			usTimeExtend = moment(fullDay).add(1, 'hours').format('hh:mma');
-			euTimeExtend = moment(fullDay).add(euTemp +1, 'hours').format('hh:mma');
-		}
-		else if (this.currentTime == this.constant.eu) {
-			var koTemp = 8;
-			var twTemp = 7;
-			var usTemp = 9;
-
-			twTime = moment(fullDay).add(twTemp, 'hours').format('hh:mma');
-			koTime = moment(fullDay).add(koTemp, 'hours').format('hh:mma');
-			usTime = moment(fullDay).subtract(usTemp, 'hours').format('hh:mma');
-			euTime = moment(fullDay).format('hh:mma'); 
-
-			twTimeExtend = moment(fullDay).add(twTemp +1, 'hours').format('hh:mma');
-			koTimeExtend = moment(fullDay).add(koTemp + 1, 'hours').format('hh:mma');
-			usTimeExtend = moment(fullDay).subtract(usTemp -1, 'hours').format('hh:mma'); 
-			euTimeExtend = moment(fullDay).add(1, 'hours').format('hh:mma');
-		}
-
-		
-		var lineText = "(台灣時間 " + twTime +", 한국시간 " + koTime + ", PST " + usTime + ", CET " + euTime +")";
-		var lineTextExtent = "(台灣時間 " + twTime+"-"+twTimeExtend +", 한국시간 " + koTime+"-"+koTimeExtend + ", PST " + usTime+"-"+usTimeExtend + ", CET " + euTime+"-"+euTimeExtend +")";
+		var lineText = "(台灣時間 " + twTime +", 한국시간 " + koTime + ", EST " + usEast + ", PST " + usWest + ", CET " + euTime +")";
+		var lineTextExtent = "(台灣時間 " + twTime+"-"+twTimeExtend +", 한국시간 " + koTime+"-"+koTimeExtend + ", EST " + usEast+"-"+usEastExtend + ", PST " + usWest+"-"+usWestExtend + ", CET " + euTime+"-"+euTimeExtend +")";
 		var returnText = "";
 
-		console.log('aare waeftawes fa', act)
 		if (act.indexOf("No Stream") > -1) {
 			return "\n";
 		} else if (act.indexOf("&nbsp;") > -1) {
@@ -256,12 +213,26 @@ var scheduler = {
 		this.hideFirstPage();
 		this.buildWeekData('text');
 	}, 
+
+	goBackBtn: function() {
+		this.goBackFirstPage();
+	},
 	
 	hideFirstPage: function() {
 		$('#picker-wrapper').hide();
 		$('#result').removeClass('hide');
 		$('#note').removeClass('hide');
 		$('#reset').removeClass('hide');
+		$('#goBack').removeClass('hide');
+	},
+
+	goBackFirstPage: function() {
+		$('#picker-wrapper').show();
+		$('#result').addClass('hide');
+		$('#note').addClass('hide');
+		$('#reset').addClass('hide');
+		$('#goBack').addClass('hide');
+		$('#copy').html("");
 	},
 
 	copyText: function(element) {

@@ -15,6 +15,7 @@
 
 	<div class="main_container">
 		<a id="reset" class="btn hide" href="schedule.html">Start Over</a>
+		<a id="goBack" class="btn hide" href="javascript:;" onclick="scheduler.goBackBtn()">Go Back</a>
 		
 		<div class="time-wrapper">
 			<h2 class="title">Jinny's Scheduler</h2>
@@ -32,7 +33,10 @@
 						<input id="ko-radio" type="radio" name="timezone" value="Asia/Seoul" checked />  Korea
 					</li>
 					<li>
-						<input id="us-radio" type="radio" name="timezone" value="America/Los_Angeles" /> US
+						<input id="usEast-radio" type="radio" name="timezone" value="America/New_York" /> US East
+					</li>
+					<li>
+						<input id="us-radio" type="radio" name="timezone" value="America/Los_Angeles" /> US West
 					</li>
 					<li>
 						<input id="eu-radio" type="radio" name="timezone" value="Europe/Paris" /> EU 

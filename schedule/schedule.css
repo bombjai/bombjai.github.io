@@ -59,6 +59,9 @@
     .ind-wrapper.us-style .card {
       background-color: #90CAF9;
     }
+    .ind-wrapper.usEast-style .card {
+      background-color: #0D47A1;
+    }
     .ind-wrapper.eu-style .card {
       background-color: #FFB74D;
     }
@@ -108,6 +111,8 @@
     padding: 10px;
   }
 
+  /*https://material.io/design/color/the-color-system.html#tools-for-picking-colors*/
+
    .ct-list li.active:nth-child(1) {
     background-color: #80CBC4;
     color: white;
@@ -139,7 +144,7 @@
    }
 
     .ct-list li.active:nth-child(4) {
-    background-color: #FFB74D;
+    background-color: #0D47A1;
     color: white;
     cursor: default;
   }
@@ -147,6 +152,17 @@
    .ct-list li.active:nth-child(4) label {
        cursor: default;
    }
+
+    .ct-list li.active:nth-child(5) {
+    background-color: #FFB74D;
+    color: white;
+    cursor: default;
+  }
+
+   .ct-list li.active:nth-child(5) label {
+       cursor: default;
+   }
+
 
   	.copy-final { color: green; margin-left: 10px; font-size: 16px; font-weight: bold;}
 
@@ -189,6 +205,19 @@
 	#reset:hover {
 	    background-color: #ccc;
 	}
+
+  #goBack {
+    position: absolute;
+    left: 5px;
+    top: 7px;
+    background-color: #ab3c3c;
+    margin: 0;
+    height: 20px;
+  }
+
+  #goBack:hover {
+      background-color: #733d3d;
+  }
 
   	.btn {
   		background-color: #f44336;
