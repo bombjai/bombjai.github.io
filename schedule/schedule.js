@@ -100,11 +100,9 @@ var scheduler = {
 		$('.individual-'+data.num).append('<span class="block tal">Activity: '+ddList+' </span>');		
 		this.buildDropDown(data.num);
 
-		$('.individual-'+data.num).append('<span class="space">Hour: '+ddHourList+' </span>');
-		$('.individual-'+data.num).append('<span class="space">Min: '+ddMinList+' </span>');
+		$('.individual-'+data.num).append('<div class="space">Hour: '+ddHourList+' </div>');
+		$('.individual-'+data.num).append('<div class="card-detail-wrapper hide"><span class="space hide-list opt">Min: '+ddMinList+' </span><span class="space hide-list opt"><label>Estimated (eg.12-1pm): '+ckbox+' </label></span></div>');
 		this.buildScheduleCard(data.num);
-
-		$('.individual-'+data.num).append('<span class="space"><label>Estimated (eg.12-1pm): '+ckbox+' </label></span>');
 	},
 
 	buildTextSchedule: function(data) {
@@ -233,6 +231,18 @@ var scheduler = {
 		$('#reset').addClass('hide');
 		$('#goBack').addClass('hide');
 		$('#copy').html("");
+	},
+
+	toggleCardDetail: function() {
+		//$('.opt').toggle();
+
+		if ( $('.card-detail-wrapper').hasClass('hide')) {
+			$('.card-detail-wrapper').removeClass('hide');
+		    $('.c-detail-title').text('Hide');
+		} else {
+			$('.card-detail-wrapper').addClass('hide');
+			$('.c-detail-title').text('Show');
+		}
 	},
 
 	copyText: function(element) {

@@ -6,7 +6,17 @@
   	 }
   	.bold {font-weight:600;}
   	.underline {text-decoration: underline;}
-  	.space {margin-left: 15px;}
+  	.space {margin-left: 15px; text-align: left;}
+    .space.opt {margin-left: 25px;}
+    .card-detail-wrapper {
+      border-top: 1px solid white;
+      padding-top: 5px;
+    }
+    .card-detail-link {    
+      margin-bottom: 10px;
+      display: block;
+    }
+
   	.ilblock {
   		display: inline-block;
   	}
@@ -21,7 +31,7 @@
     }
 
     .title {
-          background-color: #2b2929;
+      background-color: #2b2929;
       margin: 0;
       color: white;
       text-align: center;
