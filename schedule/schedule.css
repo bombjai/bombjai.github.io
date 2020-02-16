@@ -95,7 +95,7 @@
 	    padding: 0 0 10px;
 	    color: white;
 	    margin-top: 40px;
-      position: absolute;
+      position: relative;
       width: 100%;
       bottom: 0;
 	}
@@ -173,6 +173,11 @@
        cursor: default;
    }
 
+   #copy img {
+    width: 20px;
+    position: relative;
+    top: 5px;
+   }
 
   	.copy-final { color: green; margin-left: 10px; font-size: 16px; font-weight: bold;}
 
@@ -185,8 +190,12 @@
     	display: inline-block;
   	}
 
-  	.copy-style {margin-bottom: 10px;}
-    
+  	.copy-style {
+      margin: 0 auto;
+      max-width: 500px;
+      text-align: left;
+  }
+      
 	 .secret {    
     margin-top: 150px;
     color: white;
@@ -249,6 +258,8 @@
 
   	.hide {display: none;}
 
+
+    #copy-btn {display:none;}
 
 .select-css {
   /*display: block;

@@ -15,15 +15,30 @@ var scheduler = {
 		"usEast": "America/New_York",
 		"eu": "Europe/Paris",
 	},
-	itemList: ["Nothing (no activity display)", "PC Stream (電腦實況, 컴터방송)", "Outdoor Stream (戶外實況, 야외방송)", "No Stream (沒有實況, 휴방)", "Rerun (重播, 다시 하다)"],
+	itemList: ["Nothing (no activity display)", "PC Stream (電腦實況, 컴터방송)", "Outdoor Stream (戶外實況, 야외방송)", "Short Stream (短實況, 짧방송)", "No Stream (沒有實況, 휴방)"],
 
 	getWeek: function(day) {
 		return moment().add(day, 'days').tz(this.currentTime).format('ddd').toUpperCase();
 	},
 
+	getWeekFull: function(day) {
+		return moment().add(day, 'days').tz(this.currentTime).format('dddd');
+	},
+
 	getDay: function(day) {
 		return moment().add(day, 'days').tz(this.currentTime).format("MM/DD");
 	},
+
+	getDayCont: function(day, zone, obj) {
+		var today =  moment().add(day, 'days').tz(zone).format("YYYY-MM-DD");
+		var fullDay = obj[zone]
+		var currentTime = moment.tz(fullDay, zone).tz(zone).format('MM/DD');
+
+		//console.log('cdscas: ', fullDay , currentTime )
+
+		return currentTime;
+	},
+
 	getFullDay: function(day) {
 		return moment().add(day, 'days').tz(this.currentTime).format("YYYY-MM-DD");
 	},
@@ -73,6 +88,7 @@ var scheduler = {
 		for (var i = -1, length = this.weekNum; i < length; i++) {
 			data.day = this.getDay(i);
 			data.week = this.getWeek(i);
+			data.fullWeek = this.getWeekFull(i);
 			data.fullday = this.getFullDay(i);
 			data.num = i;
 
@@ -106,16 +122,16 @@ var scheduler = {
 	},
 
 	buildTextSchedule: function(data) {
-		var dateInfo = '<span class="copy-breaker">'+ data.day + ' (' + data.week + ') - </span>';
+		var dateInfo = '<span class="copy-breaker"> __**<strong>'+ data.fullWeek +'</strong> </span>';
 		
 		var selDDLval = $('.select-list-'+data.num).val();
 		if (data.textOnly && selDDLval.indexOf('Nothing') > -1) {
 			selDDLval = "&nbsp;";
 		}
-		var actInfo = '<span class="act-info">'+selDDLval+'</span>';
+		var actInfo = '<span class="act-info"><strong>'+selDDLval+'</strong>**__</span>';
 		var timeInfo = '<div class="time">'+this.buildTimeZone(data, actInfo)+'</div>';
 
-		$('.copy-'+data.num).append(timeInfo + dateInfo + actInfo +"<br/>");
+		$('.copy-'+data.num).append(dateInfo + actInfo + timeInfo +"<br/>");
 	},
 
 
@@ -175,6 +191,14 @@ var scheduler = {
 			usEast = currentTime.tz(this.constant.usEast).format('hh:mma');
 			euTime = currentTime.tz(this.constant.eu).format('hh:mma');
 
+		var curTimeObj = {
+			"Asia/Seoul": currentTime.tz(this.constant.ko),
+			"Asia/Taipei": currentTime.tz(this.constant.tw),
+			"America/Los_Angeles": currentTime.tz(this.constant.us),
+			"America/New_York": currentTime.tz(this.constant.usEast),
+			"Europe/Paris": currentTime.tz(this.constant.eu)
+		}
+
 		var currentTimeExtend = moment.tz(fullDay, this.currentTime).add(1, 'hours');
 			koTimeExtend = currentTimeExtend.tz(this.constant.ko).format('hh:mma');
 			twTimeExtend = currentTimeExtend.tz(this.constant.tw).format('hh:mma');
@@ -182,8 +206,25 @@ var scheduler = {
 			usEastExtend = currentTimeExtend.tz(this.constant.usEast).format('hh:mma');
 			euTimeExtend = currentTimeExtend.tz(this.constant.eu).format('hh:mma');
 
-		var lineText = "(台灣時間 " + twTime +", 한국시간 " + koTime + ", EST " + usEast + ", PST " + usWest + ", CET " + euTime +")";
-		var lineTextExtent = "(台灣時間 " + twTime+"-"+twTimeExtend +", 한국시간 " + koTime+"-"+koTimeExtend + ", EST " + usEast+"-"+usEastExtend + ", PST " + usWest+"-"+usWestExtend + ", CET " + euTime+"-"+euTimeExtend +")";
+			//console.log('data: ', data, ' atc: ', act)
+
+
+
+		var lineText = "<img src='https://discordapp.com/assets/b57d2718c0f2330c0e06166d4b5fb606.svg' aria-label=':flag_kr:' alt=':flag_kr:' /> " +  koTime + " ("+ this.getDayCont(data.num, this.constant.ko, curTimeObj) +")"
+						+ "<br/> <img src='https://discordapp.com/assets/9a866b52de950f63b2a345271a2a54b7.svg' aria-label=':flag_tw:' alt=':flag_tw:' /> " + twTime + " ("+ this.getDayCont(data.num, this.constant.tw, curTimeObj) +")"
+						+ "<br/> <img src='https://discordapp.com/assets/4be7421b4e5f8718344dffd8549333e9.svg' aria-label=':flag_eu:' alt=':flag_eu:' /> " + euTime + " CET ("+ this.getDayCont(data.num, this.constant.eu, curTimeObj) +") "
+						+ "<br/> <img src='https://discordapp.com/assets/d788b9231ed2028dc29245f76cf0a415.svg' aria-label=':flag_us:' alt=':flag_us:' /> " + usWest + " PST ("+ this.getDayCont(data.num, this.constant.us, curTimeObj) +")"
+						+ "/" + usEast + " EST ("+ this.getDayCont(data.num, this.constant.usEast, curTimeObj)
+						+")";
+
+		//var lineTextExtent = "(台灣時間 " + twTime+"-"+twTimeExtend +", 한국시간 " + koTime+"-"+koTimeExtend + ", EST " + usEast+"-"+usEastExtend + ", PST " + usWest+"-"+usWestExtend + ", CET " + euTime+"-"+euTimeExtend +")";
+		var lineTextExtent = "<img src='https://discordapp.com/assets/b57d2718c0f2330c0e06166d4b5fb606.svg' aria-label=':flag_kr:' alt=':flag_kr:' /> " +  koTime+"-"+koTimeExtend + " ("+ this.getDayCont(data.num, this.constant.ko, curTimeObj) +")"
+						+ "<br/> <img src='https://discordapp.com/assets/9a866b52de950f63b2a345271a2a54b7.svg' aria-label=':flag_tw:' alt=':flag_tw:' /> " + twTime+"-"+twTimeExtend + " ("+ this.getDayCont(data.num, this.constant.tw, curTimeObj) +")"
+						+ "<br/> <img src='https://discordapp.com/assets/4be7421b4e5f8718344dffd8549333e9.svg' aria-label=':flag_eu:' alt=':flag_eu:' /> " + euTime+"-"+euTimeExtend + " CET ("+ this.getDayCont(data.num, this.constant.eu, curTimeObj) +") "
+						+ "<br/> <img src='https://discordapp.com/assets/d788b9231ed2028dc29245f76cf0a415.svg' aria-label=':flag_us:' alt=':flag_us:' /> " + usWest+"-"+usWestExtend + " PST ("+ this.getDayCont(data.num, this.constant.us, curTimeObj) +")"
+						+ "/" + usEast+"-"+usEastExtend + " EST ("+ this.getDayCont(data.num, this.constant.usEast, curTimeObj)
+						+")";
+
 		var returnText = "";
 
 		if (act.indexOf("No Stream") > -1) {
