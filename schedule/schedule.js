@@ -12,6 +12,7 @@ var scheduler = {
 		"ko": "Asia/Seoul",
 		"tw": "Asia/Taipei",
 		"us": "America/Los_Angeles",
+		"usCen": "America/Rainy_River",
 		"usEast": "America/New_York",
 		"eu": "Europe/Paris",
 	},
@@ -68,16 +69,19 @@ var scheduler = {
 			return "eu-style";
 		} else if (name == this.constant.usEast) {
 			return "usEast-style";
+		} else if (name == this.constant.usCen) {
+			return "usCen-style";
 		}
 	},
 
 	buildCurrentTime: function() {
 		return "<div><ul class='ct-list'>"
-			   + "<li><label for='tw-radio'><span class='bold'>Taiwan</span>: "+ this.getCurrent(this.constant.tw) +"</label></li>"
 			   + "<li class='active'><label for='ko-radio'><span class='bold'>Korea</span>: "+ this.getCurrent(this.constant.ko) +"</label></li>"
-			   + "<li><label for='us-radio'><span class='bold'>US (PST)</span>: "+ this.getCurrent(this.constant.us) +"</label></li>"
-			   + "<li><label for='usEast-radio'><span class='bold'>US (EST)</span>: "+ this.getCurrent(this.constant.usEast) +"</label></li>"
+			   + "<li><label for='tw-radio'><span class='bold'>Taiwan</span>: "+ this.getCurrent(this.constant.tw) +"</label></li>"
 			   + "<li><label for='eu-radio'><span class='bold'>Europe</span>: "+ this.getCurrent(this.constant.eu) +"</label></li>"
+			   + "<li><label for='us-radio'><span class='bold'>Cali (PST)</span>: "+ this.getCurrent(this.constant.us) +"</label></li>"
+			   + "<li><label for='usCen-radio'><span class='bold'>Texas (CST)</span>: "+ this.getCurrent(this.constant.usCen) +"</label></li>"
+			   + "<li><label for='usEast-radio'><span class='bold'>New York (EST)</span>: "+ this.getCurrent(this.constant.usEast) +"</label></li>"
 			   + "</ul></div>"
 
 	},
@@ -172,6 +176,7 @@ var scheduler = {
 			hour = $('.hour-list-'+data.num).val().toString(), 
 			min = $('.min-list-'+data.num).val().toString(),
 			usWest = "", usWestExtend = "",
+			usCen = "", usCenExtend = "",
 			usEast = "", usEastExtend = "",
 			koTime = "", koTimeExtend = "",
 			twTime = "", twTimeExtend = "",
@@ -185,26 +190,29 @@ var scheduler = {
 		//the right way
 		//https://stackoverflow.com/questions/40401543/get-timezone-from-users-browser-using-momenttimezone-js
 		var currentTime = moment.tz(fullDay, this.currentTime);
-			koTime = currentTime.tz(this.constant.ko).format('hh:mma');
-			twTime = currentTime.tz(this.constant.tw).format('hh:mma');
-			usWest = currentTime.tz(this.constant.us).format('hh:mma');
-			usEast = currentTime.tz(this.constant.usEast).format('hh:mma');
-			euTime = currentTime.tz(this.constant.eu).format('hh:mma');
+			koTime = currentTime.tz(this.constant.ko).format('hh:MM A');
+			twTime = currentTime.tz(this.constant.tw).format('hh:MM A');
+			usWest = currentTime.tz(this.constant.us).format('hh:MM A');
+			usCen = currentTime.tz(this.constant.usCen).format('hh:MM A');
+			usEast = currentTime.tz(this.constant.usEast).format('hh:MM A');
+			euTime = currentTime.tz(this.constant.eu).format('hh:MM A');
 
 		var curTimeObj = {
 			"Asia/Seoul": currentTime.tz(this.constant.ko),
 			"Asia/Taipei": currentTime.tz(this.constant.tw),
 			"America/Los_Angeles": currentTime.tz(this.constant.us),
+			"America/Rainy_River": currentTime.tz(this.constant.usCen),
 			"America/New_York": currentTime.tz(this.constant.usEast),
 			"Europe/Paris": currentTime.tz(this.constant.eu)
 		}
 
 		var currentTimeExtend = moment.tz(fullDay, this.currentTime).add(1, 'hours');
-			koTimeExtend = currentTimeExtend.tz(this.constant.ko).format('hh:mma');
-			twTimeExtend = currentTimeExtend.tz(this.constant.tw).format('hh:mma');
-			usWestExtend = currentTimeExtend.tz(this.constant.us).format('hh:mma');
-			usEastExtend = currentTimeExtend.tz(this.constant.usEast).format('hh:mma');
-			euTimeExtend = currentTimeExtend.tz(this.constant.eu).format('hh:mma');
+			koTimeExtend = currentTimeExtend.tz(this.constant.ko).format('hh:MM A');
+			twTimeExtend = currentTimeExtend.tz(this.constant.tw).format('hh:MM A');
+			usWestExtend = currentTimeExtend.tz(this.constant.us).format('hh:MM A');
+			usCenExtend = currentTimeExtend.tz(this.constant.usCen).format('hh:MM A');
+			usEastExtend = currentTimeExtend.tz(this.constant.usEast).format('hh:MM A');
+			euTimeExtend = currentTimeExtend.tz(this.constant.eu).format('hh:MM A');
 
 			//console.log('data: ', data, ' atc: ', act)
 
@@ -212,16 +220,18 @@ var scheduler = {
 
 		var lineText = "<img src='https://discordapp.com/assets/b57d2718c0f2330c0e06166d4b5fb606.svg' aria-label=':flag_kr:' alt=':flag_kr:' /> " +  koTime + " ("+ this.getDayCont(data.num, this.constant.ko, curTimeObj) +")"
 						+ "<br/> <img src='https://discordapp.com/assets/9a866b52de950f63b2a345271a2a54b7.svg' aria-label=':flag_tw:' alt=':flag_tw:' /> " + twTime + " ("+ this.getDayCont(data.num, this.constant.tw, curTimeObj) +")"
-						+ "<br/> <img src='https://discordapp.com/assets/4be7421b4e5f8718344dffd8549333e9.svg' aria-label=':flag_eu:' alt=':flag_eu:' /> " + euTime + " CET ("+ this.getDayCont(data.num, this.constant.eu, curTimeObj) +") "
+						+ "<br/> <img src='https://discordapp.com/assets/4be7421b4e5f8718344dffd8549333e9.svg' aria-label=':flag_eu:' alt=':flag_eu:' /> " + euTime + " CET ("+ this.getDayCont(data.num, this.constant.eu, curTimeObj) +")"
 						+ "<br/> <img src='https://discordapp.com/assets/d788b9231ed2028dc29245f76cf0a415.svg' aria-label=':flag_us:' alt=':flag_us:' /> " + usWest + " PST ("+ this.getDayCont(data.num, this.constant.us, curTimeObj) +")"
+						+ "/" + usCen + " CST ("+ this.getDayCont(data.num, this.constant.usCen, curTimeObj) +")"
 						+ "/" + usEast + " EST ("+ this.getDayCont(data.num, this.constant.usEast, curTimeObj)
 						+")";
 
 		//var lineTextExtent = "(台灣時間 " + twTime+"-"+twTimeExtend +", 한국시간 " + koTime+"-"+koTimeExtend + ", EST " + usEast+"-"+usEastExtend + ", PST " + usWest+"-"+usWestExtend + ", CET " + euTime+"-"+euTimeExtend +")";
 		var lineTextExtent = "<img src='https://discordapp.com/assets/b57d2718c0f2330c0e06166d4b5fb606.svg' aria-label=':flag_kr:' alt=':flag_kr:' /> " +  koTime+"-"+koTimeExtend + " ("+ this.getDayCont(data.num, this.constant.ko, curTimeObj) +")"
 						+ "<br/> <img src='https://discordapp.com/assets/9a866b52de950f63b2a345271a2a54b7.svg' aria-label=':flag_tw:' alt=':flag_tw:' /> " + twTime+"-"+twTimeExtend + " ("+ this.getDayCont(data.num, this.constant.tw, curTimeObj) +")"
-						+ "<br/> <img src='https://discordapp.com/assets/4be7421b4e5f8718344dffd8549333e9.svg' aria-label=':flag_eu:' alt=':flag_eu:' /> " + euTime+"-"+euTimeExtend + " CET ("+ this.getDayCont(data.num, this.constant.eu, curTimeObj) +") "
+						+ "<br/> <img src='https://discordapp.com/assets/4be7421b4e5f8718344dffd8549333e9.svg' aria-label=':flag_eu:' alt=':flag_eu:' /> " + euTime+"-"+euTimeExtend + " CET ("+ this.getDayCont(data.num, this.constant.eu, curTimeObj) +")"
 						+ "<br/> <img src='https://discordapp.com/assets/d788b9231ed2028dc29245f76cf0a415.svg' aria-label=':flag_us:' alt=':flag_us:' /> " + usWest+"-"+usWestExtend + " PST ("+ this.getDayCont(data.num, this.constant.us, curTimeObj) +")"
+						+ "/" + usCen+"-"+usCenExtend + " CST ("+ this.getDayCont(data.num, this.constant.usCen, curTimeObj) +")"
 						+ "/" + usEast+"-"+usEastExtend + " EST ("+ this.getDayCont(data.num, this.constant.usEast, curTimeObj)
 						+")";
 

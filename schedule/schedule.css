@@ -69,12 +69,16 @@
     .ind-wrapper.us-style .card {
       background-color: #90CAF9;
     }
+    .ind-wrapper.usCen-style .card {
+      background-color: #a97916;
+    }
     .ind-wrapper.usEast-style .card {
       background-color: #0D47A1;
     }
     .ind-wrapper.eu-style .card {
       background-color: #FFB74D;
     }
+
 
     #result {
       text-align: center;
@@ -119,12 +123,13 @@
     cursor: pointer;
     display: block;
     padding: 10px;
+    height: 100%;
   }
 
   /*https://material.io/design/color/the-color-system.html#tools-for-picking-colors*/
 
-   .ct-list li.active:nth-child(1) {
-    background-color: #80CBC4;
+  .ct-list li.active:nth-child(1) {
+    background-color: #B39DDB;
     color: white;
     cursor: default;
   }
@@ -133,8 +138,9 @@
        cursor: default;
    }
 
-  .ct-list li.active:nth-child(2) {
-    background-color: #B39DDB;
+
+   .ct-list li.active:nth-child(2) {
+    background-color: #80CBC4;
     color: white;
     cursor: default;
   }
@@ -143,8 +149,8 @@
        cursor: default;
    }
 
-   .ct-list li.active:nth-child(3) {
-    background-color: #90CAF9;
+  .ct-list li.active:nth-child(3) {
+    background-color: #FFB74D;
     color: white;
     cursor: default;
   }
@@ -153,8 +159,8 @@
        cursor: default;
    }
 
-    .ct-list li.active:nth-child(4) {
-    background-color: #0D47A1;
+   .ct-list li.active:nth-child(4) {
+    background-color: #90CAF9;
     color: white;
     cursor: default;
   }
@@ -163,8 +169,8 @@
        cursor: default;
    }
 
-    .ct-list li.active:nth-child(5) {
-    background-color: #FFB74D;
+     .ct-list li.active:nth-child(5) {
+    background-color: #a97916;
     color: white;
     cursor: default;
   }
@@ -172,6 +178,23 @@
    .ct-list li.active:nth-child(5) label {
        cursor: default;
    }
+
+
+
+  .ct-list li.active:nth-child(6) {
+    background-color: #0D47A1;
+    color: white;
+    cursor: default;
+  }
+
+   .ct-list li.active:nth-child(6) label {
+       cursor: default;
+   }
+
+
+
+ 
+   
 
    #copy img {
     width: 20px;
@@ -192,7 +215,7 @@
 
   	.copy-style {
       margin: 0 auto;
-      max-width: 500px;
+      max-width: 550px;
       text-align: left;
   }
       
