@@ -35,7 +35,7 @@ var scheduler = {
 		var fullDay = obj[zone]
 		var currentTime = moment.tz(fullDay, zone).tz(zone).format('MM/DD');
 
-		//console.log('cdscas: ', fullDay , currentTime )
+		//console.log('cdscas: ', today, fullDay , currentTime )
 
 		return currentTime;
 	},
@@ -126,14 +126,24 @@ var scheduler = {
 	},
 
 	buildTextSchedule: function(data) {
-		var dateInfo = '<span class="copy-breaker"> __**<strong>'+ data.fullWeek +'</strong> </span>';
-		
 		var selDDLval = $('.select-list-'+data.num).val();
 		if (data.textOnly && selDDLval.indexOf('Nothing') > -1) {
 			selDDLval = "&nbsp;";
 		}
-		var actInfo = '<span class="act-info"><strong>'+selDDLval+'</strong>**__</span>';
-		var timeInfo = '<div class="time">'+this.buildTimeZone(data, actInfo)+'</div>';
+
+		var dateInfo, actInfo, actInfo = "&nbsp;";
+		
+		if (selDDLval == "&nbsp;") {
+			dateInfo = '<span class="copy-breaker"> '+ data.day + ' (' +  data.week +') </span>';
+			actInfo = '<span class="act-info"><strong></strong></span>';
+
+			timeInfo = '<div class="time"></div>';
+		} else {
+			dateInfo = '<span class="copy-breaker"> __**<strong>'+ data.fullday +'</strong> </span>';
+			actInfo = '<span class="act-info"><strong>'+selDDLval+'</strong>**__</span>';
+			timeInfo = '<div class="time">'+this.buildTimeZone(data, actInfo)+'</div>';
+		}
+
 
 		$('.copy-'+data.num).append(dateInfo + actInfo + timeInfo +"<br/>");
 	},
@@ -190,12 +200,12 @@ var scheduler = {
 		//the right way
 		//https://stackoverflow.com/questions/40401543/get-timezone-from-users-browser-using-momenttimezone-js
 		var currentTime = moment.tz(fullDay, this.currentTime);
-			koTime = currentTime.tz(this.constant.ko).format('hh:MM A');
-			twTime = currentTime.tz(this.constant.tw).format('hh:MM A');
-			usWest = currentTime.tz(this.constant.us).format('hh:MM A');
-			usCen = currentTime.tz(this.constant.usCen).format('hh:MM A');
-			usEast = currentTime.tz(this.constant.usEast).format('hh:MM A');
-			euTime = currentTime.tz(this.constant.eu).format('hh:MM A');
+			koTime = currentTime.tz(this.constant.ko).format('hh:mm A');
+			twTime = currentTime.tz(this.constant.tw).format('hh:mm A');
+			usWest = currentTime.tz(this.constant.us).format('hh:mm A');
+			usCen = currentTime.tz(this.constant.usCen).format('hh:mm A');
+			usEast = currentTime.tz(this.constant.usEast).format('hh:mm A');
+			euTime = currentTime.tz(this.constant.eu).format('hh:mm A');
 
 		var curTimeObj = {
 			"Asia/Seoul": currentTime.tz(this.constant.ko),
@@ -207,16 +217,16 @@ var scheduler = {
 		}
 
 		var currentTimeExtend = moment.tz(fullDay, this.currentTime).add(1, 'hours');
-			koTimeExtend = currentTimeExtend.tz(this.constant.ko).format('hh:MM A');
-			twTimeExtend = currentTimeExtend.tz(this.constant.tw).format('hh:MM A');
-			usWestExtend = currentTimeExtend.tz(this.constant.us).format('hh:MM A');
-			usCenExtend = currentTimeExtend.tz(this.constant.usCen).format('hh:MM A');
-			usEastExtend = currentTimeExtend.tz(this.constant.usEast).format('hh:MM A');
-			euTimeExtend = currentTimeExtend.tz(this.constant.eu).format('hh:MM A');
+			koTimeExtend = currentTimeExtend.tz(this.constant.ko).format('hh:mm A');
+			twTimeExtend = currentTimeExtend.tz(this.constant.tw).format('hh:mm A');
+			usWestExtend = currentTimeExtend.tz(this.constant.us).format('hh:mm A');
+			usCenExtend = currentTimeExtend.tz(this.constant.usCen).format('hh:mm A');
+			usEastExtend = currentTimeExtend.tz(this.constant.usEast).format('hh:mm A');
+			euTimeExtend = currentTimeExtend.tz(this.constant.eu).format('hh:mm A');
 
 			//console.log('data: ', data, ' atc: ', act)
 
-
+			//console.log('jiream ', koTime)
 
 		var lineText = "<img src='https://discordapp.com/assets/b57d2718c0f2330c0e06166d4b5fb606.svg' aria-label=':flag_kr:' alt=':flag_kr:' /> " +  koTime + " ("+ this.getDayCont(data.num, this.constant.ko, curTimeObj) +")"
 						+ "<br/> <img src='https://discordapp.com/assets/9a866b52de950f63b2a345271a2a54b7.svg' aria-label=':flag_tw:' alt=':flag_tw:' /> " + twTime + " ("+ this.getDayCont(data.num, this.constant.tw, curTimeObj) +")"
