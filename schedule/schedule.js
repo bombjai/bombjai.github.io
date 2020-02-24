@@ -1,6 +1,6 @@
 /**
  * @author Kaqlos/Kevin L.
- * @Year: 2019
+ * @Year: 2019-2020
  * @Purpose: Scheduler for discord
  */
 
@@ -132,14 +132,16 @@ var scheduler = {
 		}
 
 		var dateInfo, actInfo, actInfo = "&nbsp;";
-		
+
+		console.log('data', data)
+
 		if (selDDLval == "&nbsp;") {
 			dateInfo = '<span class="copy-breaker"> '+ data.day + ' (' +  data.week +') </span>';
 			actInfo = '<span class="act-info"><strong></strong></span>';
 
 			timeInfo = '<div class="time"></div>';
 		} else {
-			dateInfo = '<span class="copy-breaker"> __**<strong>'+ data.fullday +'</strong> </span>';
+			dateInfo = '<span class="copy-breaker"> __**<strong>'+ data.fullWeek +'</strong> </span>';
 			actInfo = '<span class="act-info"><strong>'+selDDLval+'</strong>**__</span>';
 			timeInfo = '<div class="time">'+this.buildTimeZone(data, actInfo)+'</div>';
 		}
